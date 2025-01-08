@@ -145,7 +145,7 @@ Object.defineProperty(targetPoint, "drawArrow", {
   }
 });*/
 
-referencePoint.moveTo(300, 300);
+referencePoint.moveTo(200, 200);
 console.log(referencePoint);
 
 const objects = [];
@@ -485,7 +485,7 @@ moveReferencePoint.addEventListener("click", () => {
 
 window.addEventListener("wheel", (event) => {
   if (state.keyPressed == 'D') {
-    distance.value += event.deltaY / 10;
+    distance.value -= event.deltaY / 10;
   }
   else if (state.keyPressed == 'R') {
     direction.value += event.deltaY / 10;
