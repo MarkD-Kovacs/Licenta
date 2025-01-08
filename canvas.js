@@ -492,13 +492,16 @@ window.addEventListener("wheel", (event) => {
   }
 });
 
-const drawSquareBtn = document.querySelector('#drawSquare');
-drawSquareBtn.addEventListener("click", () => {
+function drawSquareFn() {
   var square = [referencePoint.copy(), new Point(targetPoint.x, targetPoint.y)];
-  square.push(new Point(targetPoint.x + distance.value * Math.cos(Math.PI / 2), targetPoint.y + distance.value * Math.sin(Math.PI / 2)));
-  square.push(new Point(referencePoint.x + distance.value * Math.cos(Math.PI / 2), referencePoint.y + distance.value * Math.sin(Math.PI / 2)));
+  square.push(new Point(targetPoint.x + distance.value * Math.cos(toRadians(direction.value + 90)), targetPoint.y + distance.value * Math.sin(toRadians(direction.value + 90))));
+  square.push(new Point(referencePoint.x + distance.value * Math.cos(toRadians(direction.value + 90)), referencePoint.y + distance.value * Math.sin(toRadians(direction.value + 90))));
   square.push(referencePoint.copy())
   objects.push(square);
+}
+const drawSquareBtn = document.querySelector('#drawSquare');
+drawSquareBtn.addEventListener("click", () => {
+  drawSquareFn();
 })
 
 window.addEventListener("keydown", (event) => {
@@ -511,6 +514,7 @@ window.addEventListener("keydown", (event) => {
     case 'ArrowLeft': distance.value = Math.max(distance.value - 10, 0);; break;
     case 'ArrowRight': distance.value += 10; break;
     case 'm': referencePoint.moveTo(targetPoint); break;
+    case 's': drawSquareFn(); break;
     /*case 'r': 
       if (event.shiftKey == true) direction.value -= 10; 
       else direction.value += 10;
